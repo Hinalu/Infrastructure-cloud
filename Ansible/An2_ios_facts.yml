@@ -1,0 +1,28 @@
+---
+# Task An2: IOS Router Playbook
+# Gathers facts and configures logging buffer (Skills Exam Task 2)
+
+- name: Manage IOS Router
+  hosts: routers
+  connection: network_cli
+  gather_facts: no
+
+  tasks:
+    - name: Gather Facts
+      ios_facts:
+        gather_subset: all
+      register: output
+
+    - name: Display IOS Version
+      debug:
+        msg: "Device is running version {{ ansible_net_version }}"
+
+    - name: Configure Logging Buffer
+      ios_config:
+        lines:
+          - logging buffered 5000
+      register: config_result
+
+    - name: Save Configuration
+      ios_config:
+        save_when: modified

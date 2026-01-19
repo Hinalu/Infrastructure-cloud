@@ -1,0 +1,8 @@
+# Ansible Inventory File
+
+[routers]
+csr1000v ansible_host=192.168.56.101 ansible_user=cisco ansible_password=cisco123! ansible_network_os=ios
+
+[webservers]
+# Replace with your actual Linux VM IP
+web_vm ansible_host=192.168.56.102 ansible_user=devasc ansible_password=cisco

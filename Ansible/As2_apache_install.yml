@@ -1,0 +1,39 @@
+---
+# Task As2: Webserver Playbook
+# Installs Apache2 and deploys a custom index.html (Skills Exam Task 3 Source)
+
+- name: Deploy Webserver
+  hosts: webservers
+  become: yes  # Run as root (sudo)
+  tasks:
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+
+    - name: Enable Mod Rewrite
+      apache2_module:
+        name: rewrite
+        state: present
+      notify: Restart Apache
+
+    - name: Deploy Custom Home Page
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+          <head><title>DevNet Portfolio</title></head>
+          <body>
+            <h1>DevNet Associate Skills Test</h1>
+            <p>Created by: Student Name</p>
+            <p>Automated with Ansible</p>
+          </body>
+          </html>
+      notify: Restart Apache
+
+  handlers:
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
