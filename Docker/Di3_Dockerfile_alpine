@@ -1,0 +1,9 @@
+# Task Di3: Custom Image Experiment 2 (Alpine)
+# A lightweight version using Nginx on Alpine Linux
+FROM nginx:alpine
+
+# Copy the same index.html to the Nginx default directory
+COPY files/index.html /usr/share/nginx/html/index.html
+
+# Expose standard Nginx port
+EXPOSE 80

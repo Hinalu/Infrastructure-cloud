@@ -1,0 +1,25 @@
+# Task Di2: Apache Dockerfile (Based on Skills Exam Task 3)
+FROM ubuntu:latest
+
+# Avoid interactive prompts during install
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 1. Install Apache2 (Matches Ansible 'apt' task)
+RUN apt-get update && apt-get install -y apache2 && \
+    apt-get clean
+
+# 2. Enable Mod Rewrite (Matches Ansible 'apache2_module' task)
+RUN a2enmod rewrite
+
+# 3. Change Listen Port to 8088 (Matches Ansible 'lineinfile' task)
+# We use sed to replace "Listen 80" with "Listen 8088"
+RUN sed -i 's/Listen 80/Listen 8088/' /etc/apache2/ports.conf
+
+# 4. Copy Home Page (Matches Ansible 'copy' task)
+COPY files/index.html /var/www/html/index.html
+
+# Expose the new port
+EXPOSE 8088
+
+# Run Apache in the foreground
+CMD ["apachectl", "-D", "FOREGROUND"]
