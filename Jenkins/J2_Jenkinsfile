@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Prepare') {
+            steps {
+                echo '--- Stage 1: Preparation ---'
+                // In a real server, this would be: git 'https://github.com/your-repo.git'
+                echo 'Checking out source code...'
+                sh 'ls -la' 
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo '--- Stage 2: Build ---'
+                // Builds the Docker image defined in the Docker folder
+                echo 'Building Docker Image...'
+                // Adjust path to where your Dockerfile actually lives relative to the Jenkins workspace
+                sh 'docker build -t jenkins-test-app -f Docker/Di2_Dockerfile Docker/'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo '--- Stage 3: Test ---'
+                // Run the container temporarily
+                sh 'docker run -d -p 8090:8088 --name test-container jenkins-test-app'
+                
+                // Give it a moment to start
+                sleep 5
+                
+                // Test reachability using Curl (Fails pipeline if curl fails)
+                sh 'curl -f http://localhost:8090'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo '--- Cleanup ---'
+            // Stop and remove the test container regardless of success/failure
+            sh 'docker stop test-container || true'
+            sh 'docker rm test-container || true'
+        }
+    }
+}
