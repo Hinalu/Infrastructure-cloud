@@ -16,6 +16,7 @@ The project is organized by topic, corresponding to the evaluation criteria:
 * **Jenkins/**: CI/CD pipeline configurations (Tasks J1-J2).
 * **Webex/**: Webex automation scripts (Tasks W1-W2).
 * **Venv_Bash/**: Virtual Environment setup and Bash automation (Tasks Pv1, Bash).
+* **Unittest/**: Python Unit Testing experiment (Task U1).
 
 ## Contact
 * **Student:** Lucas Manzano Rodriguez
