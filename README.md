@@ -21,3 +21,4 @@ The project is organized by topic, corresponding to the evaluation criteria:
 * **Student:** Lucas Manzano Rodriguez
 * **Course:** Infrastructure & Cloud
 * **SchoolYear:** 2025-2026
+* **Class:** 2de jaar Systeem & Netwerkbeheer
