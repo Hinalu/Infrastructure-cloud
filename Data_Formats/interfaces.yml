@@ -1,0 +1,14 @@
+# Task Js1: YAML Model for Network Interfaces
+interfaces:
+  - name: GigabitEthernet1
+    description: Management Interface
+    enabled: true
+    ipv4:
+      address: 192.168.1.10
+      netmask: 255.255.255.0
+  - name: Loopback0
+    description: Simulation Loopback
+    enabled: true
+    ipv4:
+      address: 10.0.0.1
+      netmask: 255.255.255.255
