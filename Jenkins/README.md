@@ -1,15 +1,24 @@
 # Jenkins CI/CD
 
 ## Tasks Overview
-This folder contains the Pipeline configuration for automating the build and test process, satisfying criteria J1 and J2.
+CI/CD Pipeline configuration (Criteria J1, J2).
 
 ### Included Files
-* **J2 - `J2_Jenkinsfile`**: A Declarative Pipeline script defining 3 stages:
-    1. **Prepare**: Checks out source code.
-    2. **Build**: Builds the Docker image using the Dockerfile from the `Docker/` folder.
-    3. **Test**: Runs the container and performs a `curl` connectivity check.
+* **`J2_Jenkinsfile`**: The pipeline definition script.
 
-### Usage
-1. Create a new "Pipeline" job in Jenkins.
-2. In the "Pipeline Definition", choose "Pipeline script from SCM".
-3. Point it to this GitHub repository and specify the Script Path as `Jenkins/J2_Jenkinsfile`.
+---
+
+## 🎓 Exam Prep: Concepts & Explanations
+
+### 1. What is CI/CD?
+* **CI (Continuous Integration):** Automatically building and testing code every time a developer saves work.
+* **CD (Continuous Deployment):** Automatically pushing that code to production servers.
+
+### 2. What is a Pipeline?
+A set of automated steps. In our `Jenkinsfile`, the steps are:
+1.  **Prepare:** Get the code.
+2.  **Build:** Create the Docker image.
+3.  **Test:** Check if the web server works (using `curl`).
+
+### 3. Why `agent any`?
+This tells Jenkins it can run this job on any available computer (node) connected to the Jenkins system.

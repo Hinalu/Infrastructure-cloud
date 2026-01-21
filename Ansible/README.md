@@ -1,19 +1,30 @@
 # Ansible Automation
 
 ## Tasks Overview
-This folder contains Ansible playbooks for configuring both network devices (IOS XE) and servers (Linux), satisfying criteria An1-An3 and As1-As3.
+Ansible playbooks for Network and Server configuration (Criteria An2, An3, As2, As3).
 
 ### Included Files
-* **`ansible.cfg`**: Configuration file to disable host key checking and set defaults.
-* **`hosts`**: Inventory file defining the `routers` and `webservers` groups.
-* **An2 - `An2_ios_facts.yml`**: Connects to a CSR1000v router to gather facts and configure the logging buffer size to 5000.
-* **As2 - `As2_apache_install.yml`**: Connects to a Linux server to install Apache2, enable modules, and deploy a custom HTML landing page.
+* **`ansible.cfg`**: Config file (defaults).
+* **`hosts`**: Inventory file (list of IP addresses).
+* **`An2_ios_facts.yml`**: Network playbook.
+* **`As2_apache_install.yml`**: Server playbook.
 
-### Usage
-Run the playbooks using the `ansible-playbook` command:
-```bash
-# Run the Network Playbook
-ansible-playbook An2_ios_facts.yml
+---
 
-# Run the Server Playbook
-ansible-playbook As2_apache_install.yml
+## 🎓 Exam Prep: Concepts & Explanations
+
+### 1. What is Ansible?
+Ansible is an **Agentless** automation tool. It connects to devices via SSH, pushes the configuration, and then disconnects. It uses **YAML** for its code.
+
+### 2. Key Components
+* **Inventory (`hosts`):** A list of devices to manage, grouped by type (e.g., `[routers]`, `[webservers]`).
+* **Playbook (`.yml`):** The script describing *what* to do.
+* **Task:** A single action inside a playbook (e.g., "Install Apache").
+* **Module:** The code that actually runs the task (e.g., `apt`, `ios_config`, `copy`).
+
+### 3. What is Idempotency?
+This is the most important concept in Ansible. It means **"Running the same script multiple times produces the same result."**
+* If Apache is already installed, Ansible does nothing. It checks the *state* before acting.
+
+### 4. What does `become: yes` mean?
+It tells Ansible to use `sudo` (Run as Administrator/Root). This is required for installing software on Linux servers.

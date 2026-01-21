@@ -1,16 +1,30 @@
 # Docker Containerization
 
 ## Tasks Overview
-This folder contains Dockerfiles and management scripts satisfying criteria Di1-Di3, Dc1, and Dm1.
+Dockerfiles and management scripts (Criteria Di1-Di3, Dc1, Dm1).
 
 ### Included Files
-* **Di2 - `Di2_Dockerfile`**: (Task 3) Ubuntu-based Apache image listening on port 8088 with `mod_rewrite` enabled.
-* **Di3 - `Di3_Dockerfile_alpine`**: (Experiment 2) Lightweight Alpine Nginx image serving the same content.
-* **Dc1 - `Dc1_build_run.sh`**: Bash script to build the images and run the containers.
-* **Dm1 - `Dm1_manage.sh`**: Bash script to stop and remove containers/images.
-* **`files/index.html`**: The custom landing page required by the Skills Exam.
+* **`Di2_Dockerfile`**: Instructions to build the Apache image.
+* **`Dc1_build_run.sh`**: Script to build and run containers.
 
-### Usage
-1. Make scripts executable:
-   ```bash
-   chmod +x *.sh
+---
+
+## 🎓 Exam Prep: Concepts & Explanations
+
+### 1. Container vs. Virtual Machine (VM)
+* **VM:** Virtualizes the *Hardware*. Runs a full OS (heavy, slow boot).
+* **Container:** Virtualizes the *OS (Kernel)*. Shares the host OS but isolates the application (lightweight, fast boot).
+
+### 2. Image vs. Container
+* **Image:** The "Recipe" or "Blueprint". It is read-only. (Defined by the Dockerfile).
+* **Container:** The "Cake" or "Running Instance". It is the image brought to life.
+
+### 3. Key Dockerfile Commands
+* `FROM`: The base OS (e.g., Ubuntu).
+* `RUN`: Executes commands during the build (installing software).
+* `COPY`: Moves files from your laptop into the image.
+* `CMD`: The command that runs when the container starts.
+
+### 4. Port Mapping (`-p 8088:8088`)
+Containers are isolated. The outside world cannot reach them by default.
+* `-p HostPort:ContainerPort` creates a tunnel. It says "Traffic hitting port 8088 on my laptop should go to port 8088 inside the container."

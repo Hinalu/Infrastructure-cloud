@@ -1,17 +1,21 @@
-# Virtual Environment & Bash Automation
+# Virtual Environment & Bash
 
 ## Tasks Overview
-This folder contains scripts for managing Python environments and Bash shell automation, satisfying criteria Pv1, Pv2, and the Bash requirement.
+Python environment setup and Bash scripting (Criterion Pv1, Task 7).
 
 ### Included Files
-* **Pv1 - `Pv1_setup.sh`**: A shell script demonstrating the commands to create a Python Virtual Environment (`venv`).
-* **Bash - `Bash_api_check.sh`**: A Bash automation script that:
-    1. Uses `curl` to check the HTTP status code of a target API.
-    2. Logs the result (Success/Failure) to a log file.
-    3. Conditionally executes further logic based on reachability.
+* **`Pv1_setup.sh`**: Sets up a Python venv.
+* **`Bash_api_check.sh`**: Checks API availability.
 
-### Usage
-```bash
-chmod +x *.sh
-./Pv1_setup.sh
-./Bash_api_check.sh
+---
+
+## 🎓 Exam Prep: Concepts & Explanations
+
+### 1. What is a Virtual Environment (venv)?
+It is an isolated folder for a Python project.
+* **Why?** It lets you install specific libraries (like `requests` version 2.0) for one project without breaking another project that needs version 1.0.
+
+### 2. Bash Scripting Basics
+* **`#!/bin/bash` (Shebang):** The first line. It tells the computer "Use the Bash program to interpret this file."
+* **`chmod +x`:** "Change Mode + Executable". It turns a text file into a program you can run.
+* **`curl -o /dev/null`:** Run curl but throw away the output (we only care about the status code).
